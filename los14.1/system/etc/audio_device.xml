@@ -3,8 +3,15 @@
     <versioncontrol value="1.01">
     </versioncontrol>
     <!-- These are the initial mixer settings -->
-    <kctl name="Audio_Speaker_class_Switch" value="CLASSAB" />
-  	<!--headphone output-->
+    <kctl name="Audio_Amp_R_Switch" value="Off" />
+    <kctl name="Audio_Amp_L_Switch" value="Off" />
+    <kctl name="Ext_Speaker_Amp_Switch" value="Off" />
+    <kctl name="Ext_Headphone_Amp_Switch" value="Off" />
+    <kctl name="Audio_MIC1_Mode_Select" value="ACCMODE" />
+    <kctl name="Audio_MIC2_Mode_Select" value="ACCMODE" />
+    <kctl name="Audio_ADC_1_Switch" value="Off" />
+    <kctl name="Audio_ADC_2_Switch" value="Off" />
+    <!--headphone output-->
     <path name="headphone_output" value="turnon">
         <kctl name="Audio_Amp_R_Switch" value="On" />
         <kctl name="Audio_Amp_L_Switch" value="On" />
@@ -50,6 +57,13 @@
     <path name="ext_speaker_output" value="turnoff">
         <kctl name="Ext_Speaker_Amp_Switch" value="Off" />
     </path>
+    <!--external_headphone_amp switch-->
+    <path name="ext_headphone_output" value="turnon">
+        <kctl name="Ext_Headphone_Amp_Switch" value="On" />
+    </path>
+    <path name="ext_headphone_output" value="turnoff">
+        <kctl name="Ext_Headphone_Amp_Switch" value="Off" />
+    </path>
     <!--mic setting-->
      <path name="builtin_Mic_Mic3" value="turnon">
         <kctl name="Audio_MicSource1_Setting" value="ADC1" />
@@ -76,6 +90,7 @@
     </path>
     <path name="builtin_Mic_SingleMic" value="turnon">
         <kctl name="Audio_MicSource1_Setting" value="ADC1" />
+        <kctl name="Audio_MicSource2_Setting" value="ADC1" />
         <kctl name="Audio_ADC_1_Switch" value="On" />
         <kctl name="Audio_ADC_2_Switch" value="On" />
         <kctl name="Audio_Preamp1_Switch" value="IN_ADC1" />
@@ -112,6 +127,7 @@
     </path>
     <path name="headset_mic_input" value="turnon">
         <kctl name="Audio_MicSource1_Setting" value="ADC2" />
+        <kctl name="Audio_MicSource2_Setting" value="ADC2" />
         <kctl name="Audio_ADC_1_Switch" value="On" />
         <kctl name="Audio_ADC_2_Switch" value="On" />
         <kctl name="Audio_Preamp1_Switch" value="IN_ADC2" />
@@ -199,5 +215,17 @@
     <path name="Mic_Setting_NoInverse" value="setting">
         <kctl name="Audio_Preamp1_Switch" value="IN_ADC1" />>
         <kctl name="Audio_Preamp2_Switch" value="IN_ADC1" />>
+    </path>
+    <path name="DL1_LR_SWAP" value="setting">
+        <kctl name="DL1_LR_SWITCH" value="LR_SWAP" />>
+    </path>
+    <path name="DL1_LR_NORMAL" value="setting">
+        <kctl name="DL1_LR_SWITCH" value="LR_NORMAL" />>
+    </path>
+    <path name="VOL_KEY_SWAP" value="setting">
+        <kctl name="VOLKEY_SWITCH" value="VOLKEY_SWAP" />>
+    </path>
+    <path name="VOL_KEY_NORMAL" value="setting">
+        <kctl name="VOLKEY_SWITCH" value="VOLKEY_NORMAL" />>
     </path>
 </mixercontrol>
