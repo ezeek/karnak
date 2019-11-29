@@ -1,0 +1,13 @@
+ui_print("**********************************************");
+ui_print("**      >> forum.xda-developers.com <<      **");
+ui_print("**  '[ROM][unlocked][karnak] Lineage-16.0'  **");
+ui_print("**    comment #000 flashable workaround     **");
+ui_print("**           created by spelcheck           **");
+ui_print("**********************************************");
+ui_print("- Placing alsa-utils binaries into /system/xbin ..");
+ui_print("- Placing alsa-utils configuration into /system/usr/share/alsa ..");
+ui_print("- .. setting permissions ..");
+ui_print("- Installing headphone-jack watcher to /system/etc/init.d .. ");
+ui_print("- Installing alsa-utils libasound.so into vendor libs.. ");
+ui_print("- .. setting permissions ..");
+ui_print("- Done!");

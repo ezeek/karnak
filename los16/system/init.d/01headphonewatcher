@@ -1,0 +1,29 @@
+#!/system/bin/sh
+
+logcat -c; logcat | grep --line-buffered 'QuiescentSpeakerRoute: Processing message CONNECT_WIRED_HEADSET' | while read line; do alsa_amixer cset name='Ext_Speaker_Amp_Switch' 0; done &
+
+
+logcat | grep --line-buffered 'QuiescentHeadsetRoute: Processing message DISCONNECT_WIRED_HEADSET' | while read line; do alsa_amixer cset name='Ext_Speaker_Amp_Switch' 1; done &
+
+
+
+#{
+#echo "AUDIOFIX ENABLED"
+#}
+# | tee /dev/tty | while read line; do 
+# log -p v -t "$0" "$line"
+#done
+
+
+
+
+# QuiescentSpeakerRoute: Processing message CONNECT_WIRED_HEADSET
+# QuiescentHeadsetRoute: Processing message DISCONNECT_WIRED_HEADSET
+
+#logcat | grep --line-buffered 'QuiescentSpeakerRoute: Processing message CONNECT_WIRED_HEADSET' | while read line; do echo "found it" ; done &
+
+
+L="log -p i -t headphonefix"
+
+$L "INITIATED HEADPHONE FIX WATCHER";
+
