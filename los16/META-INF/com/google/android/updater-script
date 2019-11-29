@@ -7,7 +7,7 @@ ui_print("**********************************************");
 ui_print(" ");
 ui_print("= Checking for KARNAK ..");
 assert(getprop("ro.product.device") == "karnak" || getprop("ro.build.product") == "karnak");
-ui_print("+ Confirmed.
+ui_print("+ Confirmed.");
 ui_print(" ");
 ui_print("= Mounting /system ...");
 run_program("/sbin/mount","/system");
@@ -17,11 +17,11 @@ ui_print("  - Installing headphone watcher to /system/etc/init.d");
 package_extract_dir("system", "/system");
 ui_print("  Setting permissions ...");
 
-#set_perm(0, 0, 0755, "/system/xbin/alsa_amixer");
-#set_perm(0, 0, 0755, "/system/xbin/alsa_aplay");
-#set_perm(0, 0, 0755, "/system/xbin/alsa_ctl");
+set_perm(0, 0, 0755, "/system/xbin/alsa_amixer");
+set_perm(0, 0, 0755, "/system/xbin/alsa_aplay");
+set_perm(0, 0, 0755, "/system/xbin/alsa_ctl");
 #set_perm_recursive(0, 0, 0755, 0644, "/system/usr/share/alsa");
-#set_perm(0, 0, 0755, "/system/etc/init.d/01headphonewatcher");
+set_perm(0, 0, 0755, "/system/etc/init.d/01headphonewatcher");
 
 run_program("/sbin/umount", "/system");
 ui_print("+ Unmounting /system");
@@ -29,7 +29,7 @@ ui_print(" ");
 ui_print("= Mounting /vendor ...");
 run_program("/sbin/mount","/vendor");
 ui_print("  - Installing alsa-utils libasound.so into /vendor/lib");
-package_extract_dir("system", "/system");
+package_extract_dir("vendor", "/vendor");
 ui_print("  - Setting permissions ..");
 
 #set_perm(0, 0, 0644, "/vendor/lib/libasound.so");
