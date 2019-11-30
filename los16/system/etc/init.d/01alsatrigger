@@ -1,0 +1,39 @@
+#!/system/bin/sh
+
+version="1.01 dash";
+
+L="log -p i -t alsa_trigger"
+$L " "
+$L "   __   ALSA  .__                             "
+$L " _/  |________|__| ____   ____   ___________  "
+$L " \   __\_  __ \  |/ ___\ / ___\_/ __ \_  __ \ "
+$L "  |  |  |  | \/  / /_/  > /_/  >  ___/|  | \/ "
+$L "  |__|  |__|  |__\___  /\___  / \___  >__|    "
+$L "                /_____//_____/      \/        "
+$L " spelcheck@xda                          v$version"
+$L " "
+
+# @TODO: make this a legitimate rc.d service with a pid, start/stop/restart actions
+
+# Send intitial platform-specific commands to ALSA.
+alsa_amixer cset name='Audio_Amp_L_Switch' 1;
+alsa_amixer cset name='Audio_Amp_R_Switch' 1;
+alsa_amixer cset name='Ext_Headphone_Amp_Switch' 1;
+alsa_amixer cset name='Ext_Speaker_Amp_Switch' 0;
+
+# Clear logcat so we don't trigger based on stale data.
+logcat -c;
+
+# Launch a separate piped logcat grep process to search for the trigger text, then directly send controls to ALSA.
+
+# CONNECT_WIRED_HEADSET
+# Turn off Ext_Speaker_Amp_Switch
+# Turn on Ext_Headphone_Amp_Switch
+
+logcat | grep --line-buffered 'QuiescentSpeakerRoute: Processing message CONNECT_WIRED_HEADSET' | while read line; do alsa_amixer cset name='Ext_Speaker_Amp_Switch' 0; alsa_amixer cset name='Ext_Headphone_Amp_Switch' 1; done &
+
+# DISCONNECT_WIRED_HEADSET
+# Turn on Ext_Speaker_Amp_Switch
+# Turn off Ext_Headphone_Amp_Switch
+
+logcat | grep --line-buffered 'QuiescentSpeakerRoute: Processing message CONNECT_WIRED_HEADSET' | while read line; do alsa_amixer cset name='Ext_Speaker_Amp_Switch' 1; alsa_amixer cset name='Ext_Headphone_Amp_Switch' 0; done &
