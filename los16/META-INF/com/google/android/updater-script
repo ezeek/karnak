@@ -1,7 +1,7 @@
 ui_print("**********************************************");
 ui_print("**      >> forum.xda-developers.com <<      **");
 ui_print("**  '[ROM][unlocked][karnak] Lineage-16.0'  **");
-ui_print("**        comment #000 headphone fix        **");
+ui_print("**        comment #149 headphone fix        **");
 ui_print("**           created by spelcheck           **");
 ui_print("**********************************************");
 ui_print(" ");

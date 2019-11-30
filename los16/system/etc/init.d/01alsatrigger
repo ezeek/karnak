@@ -1,19 +1,20 @@
 #!/system/bin/sh
 
-version="1.01 dash";
+version="LOS16 - v.149 da[sh]";
 
 L="log -p i -t alsa_trigger"
 $L " "
-$L "   __   ALSA  .__                             "
+$L "   __   ALSA  .__   $version"
 $L " _/  |________|__| ____   ____   ___________  "
 $L " \   __\_  __ \  |/ ___\ / ___\_/ __ \_  __ \ "
 $L "  |  |  |  | \/  / /_/  > /_/  >  ___/|  | \/ "
 $L "  |__|  |__|  |__\___  /\___  / \___  >__|    "
 $L "                /_____//_____/      \/        "
-$L " spelcheck@xda                          v$version"
+$L " spelcheck@xda"
 $L " "
 
-# @TODO: make this a legitimate rc.d service with a pid, start/stop/restart actions
+# @todo - make this a legitimate rc.d service with a pid, start/stop/restart actions
+# @future - continue work on 'bash' branch so that it's modular, configurable and usable for all platforms and configurations (named 'ALSA_trigger').
 
 # Send intitial platform-specific commands to ALSA.
 alsa_amixer cset name='Audio_Amp_L_Switch' 1;
@@ -36,4 +37,4 @@ logcat | grep --line-buffered 'QuiescentSpeakerRoute: Processing message CONNECT
 # Turn on Ext_Speaker_Amp_Switch
 # Turn off Ext_Headphone_Amp_Switch
 
-logcat | grep --line-buffered 'QuiescentSpeakerRoute: Processing message CONNECT_WIRED_HEADSET' | while read line; do alsa_amixer cset name='Ext_Speaker_Amp_Switch' 1; alsa_amixer cset name='Ext_Headphone_Amp_Switch' 0; done &
+logcat | grep --line-buffered 'QuiescentHeadsetRoute: Processing message DISCONNECT_WIRED_HEADSET' | while read line; do alsa_amixer cset name='Ext_Speaker_Amp_Switch' 1; alsa_amixer cset name='Ext_Headphone_Amp_Switch' 0; done &
